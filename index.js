@@ -360,12 +360,14 @@ module.exports = (params) => {
             results[results.length - 1],
             results
           );
+
           results.push(functionRes);
         } catch (e) {
           if (rollback) {
             await query("ROLLBACK");
             rollback(e);
           }
+
           return results;
         }
       }
