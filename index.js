@@ -361,7 +361,7 @@ module.exports = (params) => {
         } catch (e) {
           if (rollback) {
             await query("ROLLBACK");
-            rollback(err);
+            rollback(e);
           }
           return results;
         }
