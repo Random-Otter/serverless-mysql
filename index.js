@@ -339,13 +339,13 @@ module.exports = (params) => {
         return this;
       },
       commit: async function() {
-        return await commit(queries, rollback);
+        return await commit(queries, functionIndices, rollback);
       },
     };
   };
 
   // Commit transaction by running queries
-  const commit = async (queries, rollback) => {
+  const commit = async (queries, functionIndices, rollback) => {
     let results = []; // keep track of results
 
     // Start a transaction
