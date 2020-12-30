@@ -356,7 +356,10 @@ module.exports = (params) => {
       // if a user enqueued function, run without a query, handle rollback on catch
       if (functionIndices.has(i)) {
         try {
-          let functionRes = await queries[i]();
+          let functionRes = await queries[i](
+            results[results.length - 1],
+            results
+          );
           results.push(functionRes);
         } catch (e) {
           if (rollback) {
