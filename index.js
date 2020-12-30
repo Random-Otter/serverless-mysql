@@ -312,7 +312,7 @@ module.exports = (params) => {
   // Init a transaction object and return methods
   const transaction = () => {
     let queries = []; // keep track of queries
-    let functionIndices = Set();
+    let functionIndices = new Set();
     let rollback = () => {}; // default rollback event
 
     return {
@@ -356,7 +356,7 @@ module.exports = (params) => {
       // if a user enqueued function, run without a query, handle rollback on catch
       if (functionIndices.has(i)) {
         try {
-	  let functionRes = await queries[i]();
+          let functionRes = await queries[i]();
           results.push(functionRes);
         } catch (e) {
           if (rollback) {
